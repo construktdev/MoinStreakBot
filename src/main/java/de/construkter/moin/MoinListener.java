@@ -29,6 +29,7 @@ public class MoinListener extends ListenerAdapter {
                 saveUserToFile(currentUser);
             } else {
                 event.getMessage().delete().queue();
+                Objects.requireNonNull(event.getMember()).timeoutFor(Duration.ofHours(1)).queue();
             }
         }
     }
